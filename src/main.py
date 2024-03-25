@@ -9,3 +9,7 @@ def main():
     controller = CPUController(view)
     view.setController(controller)
     controller.cycle()
+
+
+if __name__ == '__main__':
+    main()
