@@ -34,10 +34,19 @@ class CPUController:
         for i in range(len(binaryFinalArr)):
             if ((cycleBehaviorFlag == 0 and userStep == 1) or (cycleBehaviorFlag == 1)):
                 # Manual stepping here, will only run if userStep is set to state 1 or if behavior flag is 1
+                # Call to view layer here, asks user if they want to step. Only do this call if cycleBehaviorFlag != 1
+                userStep = 0 # reset state to stop incrementation, unused if cycleBehaviorFlag == 1
 
-                userStep = 0 # reset state to stop incrementation
+                # construct model object here with instruction info. The init func should determine the fields filled.
 
-                # construct model object. The init should determine the fields filled out
+                # Check what the instruction does, perform it.
+                # This means register values will be adjusted according to instruction behavior.
+                # Add these new values to the view object's register array to the right index.
+                # If this instruction is arithmetic, increase view object's ALUCount.
+                # If this instruction is a read (load) or write (store), increase view object's read/write count
+                # Update memory... somehow (the specifications weren't clear)
+
+                # Increment PC when all is said and done and loop for next instruction in binary array.
 
                 pass
             else:
