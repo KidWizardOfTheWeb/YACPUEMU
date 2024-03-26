@@ -14,6 +14,10 @@ class CPUView:
         # number of instructions we support for this project. We want to store a count for each instruction's usage. 
         self.cycles = 0  # number of cycles
 
+    def setController(self, c):
+        controller = c
+        pass
+
     def incrementPC(self, instructionsMoved):  # increments the pc by however many instructions are moved (usually 1)
         self.PC += (4 * instructionsMoved)
         pass
