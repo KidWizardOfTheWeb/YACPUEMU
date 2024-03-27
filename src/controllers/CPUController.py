@@ -1,4 +1,5 @@
 import sys
+from models.CPU import *
 from struct import pack, unpack
 
 class CPUController:
@@ -22,13 +23,10 @@ class CPUController:
         # or automatically if set to 1 at the beginning
 
         cycleBehaviorFlag = -1
-        while cycleBehaviorFlag != 0 or cycleBehaviorFlag != 1:
-            cycleBehaviorFlag = input("Type 0 to step through the program or type 1 to run it all at once.")
+        while cycleBehaviorFlag != 0 and cycleBehaviorFlag != 1:
+            cycleBehaviorFlag = int(input("Type 0 to step through the program or type 1 to run it all at once."))
 
-        if cycleBehaviorFlag == 1:
-            userStep = 1
-        else:
-            userStep = 0
+        userStep = 1
         # If cycle behavior flag is not 0, it will run the whole program at once
 
         for i in range(len(binaryFinalArr)):
@@ -38,6 +36,7 @@ class CPUController:
                 userStep = 0 # reset state to stop incrementation, unused if cycleBehaviorFlag == 1
 
                 # construct model object here with instruction info. The init func should determine the fields filled.
+                instructionInst = Instruction(binaryFinalArr[i])
 
                 # Check what the instruction does, perform it.
                 # This means register values will be adjusted according to instruction behavior.
@@ -50,9 +49,10 @@ class CPUController:
 
                 pass
             else:
-                stepCheck = input("Step? 1 to step, 0 to force stop.")
+                stepCheck = int(input("Step? 1 to step, 0 to force stop."))
                 if stepCheck == 1:
                     userStep = 1
+                    i -= 1
                 else:
                     userStep = 0
                 pass

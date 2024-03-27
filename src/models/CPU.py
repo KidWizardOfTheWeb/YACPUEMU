@@ -7,7 +7,7 @@ class Instruction:
         # Now we find the opcode and instruction
         # In each case, initialize registers and immediate fields accordingly.
         # That is to say, in each case, init whatever is needed directly in there. Up to 3 total parameters usually.
-        match self.opcode:
+        match int(self.opcode):
             case 0:
                 # R(egister)-Type. SPECIAL. Only operates with registers, no immediates.
                 # add, sub, and, or, slt
@@ -20,9 +20,13 @@ class Instruction:
                 pass
             case 2:
                 # J(ump)-type. Jump
+                instruction = self.opcode
+                self.offImmVal = '{0:032b}'.format(binary)[6:32]  # 26-bit offset/immediate value
                 pass
             case 3:
                 # J(ump)-type. Jump and link. We really should not end up here.
+                instruction = self.opcode
+                self.offImmVal = '{0:032b}'.format(binary)[6:32]  # 26-bit offset/immediate value
                 pass
             case _:
                 # I(mmediate)-Type. Everything greater than 3 goes here.
@@ -37,6 +41,46 @@ class Instruction:
 
         # Find instruction name. This is just for easier operation later
         match instruction:
+            case '100000':
+                # add
+                self.instrName = 'add'
+                pass
+            case '100010':
+                # sub
+                self.instrName = 'sub'
+                pass
+            case '100100':
+                # and
+                self.instrName = 'and'
+                pass
+            case '100101':
+                # or
+                self.instrName = 'or'
+                pass
+            case '101010':
+                # slt
+                self.instrName = 'slt'
+                pass
+            case '000100':
+                # beq
+                self.instrName = 'beq'
+                pass
+            case '100011':
+                # lw
+                self.instrName = 'lw'
+                pass
+            case '101011':
+                # sw
+                self.instrName = 'sw'
+                pass
+            case '001000':
+                # addi
+                self.instrName = 'addi'
+                pass
+            case '000010':
+                # jump
+                self.instrName = 'jump'
+                pass
             case _:
                 pass
 

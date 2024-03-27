@@ -22,6 +22,10 @@ class CPUView:
         self.PC += (4 * instructionsMoved)
         pass
 
+    def setPC(self, PC): # sets the PC. Used for jump/branch instructions.
+        self.PC = PC
+        pass
+
     def editRegVal(self, regNum,
                    val):  # if a register changes, pass in both which register is changed and what its changed to
         self.registerArr[regNum] = val
@@ -59,7 +63,7 @@ class CPUView:
             if self.registerArr[i] is None:
                 print("N/A")
             else:
-                print(hex(self.registerArr[i]))
+                print(hex((self.registerArr[i])))
 
         print("ALU Operations: " + str(self.ALUCount))  # displays amount of operations using the ALU
 
