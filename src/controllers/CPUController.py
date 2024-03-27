@@ -1,5 +1,6 @@
 import sys
 from models.CPU import *
+from views.CPUView import *
 from struct import pack, unpack
 
 class CPUController:
@@ -28,6 +29,17 @@ class CPUController:
 
         userStep = 1
         # If cycle behavior flag is not 0, it will run the whole program at once
+
+        # We need to run the program until completion, which could happen at any time.
+        # We will base this off of the current PC.
+        # First, multiply num of total instructions by 4.
+        totalPCAmt = len(binaryFinalArr) * 4
+        # While the PC is not greater than or equal to the final PC location, run the loop.
+        # This should also cover for jumps, as we can modify the current iteration of the loop due to this reliance.
+
+        # for i in range(len(binaryFinalArr)):
+
+        # while view.PC != totalPCAmt
 
         for i in range(len(binaryFinalArr)):
             if ((cycleBehaviorFlag == 0 and userStep == 1) or (cycleBehaviorFlag == 1)):
